@@ -33,7 +33,9 @@ module.exports = function(config) {
 
             request.end();
         }
-
+        else {
+            next();
+        }
     };
 
     middleware.hears = function(tests, message) {
