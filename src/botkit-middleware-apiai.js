@@ -1,4 +1,5 @@
 var apiaiService = require('apiai');
+var uuid = require('node-uuid');
 
 module.exports = function(config) {
 
@@ -13,10 +14,13 @@ module.exports = function(config) {
     }
 
     var middleware = {};
+    var sessionId = uuid.v1();
 
     middleware.receive = function(bot, message, next) {
         if (message.text) {
-            request = apiai.textRequest(message.text);
+            request = apiai.textRequest(message.text, {
+                sessionId: sessionId
+            });
 
             request.on('response', function(response) {
                 message.intent = response.result.metadata.intentName;
