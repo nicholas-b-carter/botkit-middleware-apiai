@@ -17,7 +17,8 @@ npm install --save botkit-middleware-apiai
 Enable the middleware:
 ```
 var apiai = require('botkit-middleware-apiai')({
-    token: <my_apiai_token>
+    token: <my_apiai_token>,
+    skip_bot: true // or false. If true, the middleware don't send the bot reply/says to api.ai
 });
 
 controller.middleware.receive.use(apiai.receive);
