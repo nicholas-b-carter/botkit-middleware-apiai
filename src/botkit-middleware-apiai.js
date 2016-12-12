@@ -12,12 +12,18 @@ module.exports = function(config) {
     if (!config.minimum_confidence) {
         config.minimum_confidence = 0.5;
     }
+    if (!config.skip_bot) {
+        config.skip_bot = false;
+    }
 
     var middleware = {};
     var sessionId = uuid.v1();
 
     middleware.receive = function(bot, message, next) {
-        if (message.text) {
+        if(config.skip_bot === true && message.bot_id !== undefined){
+          next()
+        }
+        else if (message.text) {
             request = apiai.textRequest(message.text, {
                 sessionId: sessionId
             });

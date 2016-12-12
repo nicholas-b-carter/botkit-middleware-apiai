@@ -15,9 +15,10 @@ npm install --save botkit-middleware-apiai
 ```
 
 Enable the middleware:
-```
+```javascript
 var apiai = require('botkit-middleware-apiai')({
-    token: <my_apiai_token>
+    token: <my_apiai_token>,
+    skip_bot: true // or false. If true, the middleware don't send the bot reply/says to api.ai
 });
 
 controller.middleware.receive.use(apiai.receive);
@@ -30,7 +31,7 @@ controller.hears(['hello'],'direct_message',apiai.hears,function(bot, message) {
 ## What it does
 
 Using the Api.ai middleware with Botkit causes every message sent to your bot to be first sent through Api.ai's NLP services for processing. The response from Api.ai is then returned in the incoming messages as `message.intent`, `message.entities` for any language entities (dates, places, etc), `message.fulfillment` for Api.ai specific speech fulfillment, `message.confidence` for the confidence interval, and finally the `message.nlpResponse` which represents the raw request as seen below:
-
+```javascript
     {
       "id": "XXXX",
       "timestamp": "2016-05-31T18:20:38.992Z",
@@ -56,3 +57,4 @@ Using the Api.ai middleware with Botkit causes every message sent to your bot to
         "errorType": "success"
       }
     }
+```
