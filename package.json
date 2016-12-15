@@ -1,6 +1,6 @@
 {
   "name": "botkit-middleware-apiai",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Middleware for using Api.ai with Botkit-powered bots",
   "main": "src/botkit-middleware-apiai.js",
   "scripts": {

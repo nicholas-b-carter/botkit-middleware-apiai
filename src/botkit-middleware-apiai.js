@@ -59,6 +59,16 @@ module.exports = function(config) {
         return false;
     };
 
+    middleware.action = function(tests, message) {
+        for (var i = 0; i < tests.length; i++) {
+            if (message.nlpResponse.result.action === tests[i] &&
+                message.confidence >= config.minimum_confidence) {
+                return true;
+            }
+        }
+
+        return false;
+    };
 
     return middleware;
 
