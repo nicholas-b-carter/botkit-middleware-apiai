@@ -23,7 +23,13 @@ var apiai = require('botkit-middleware-apiai')({
 
 controller.middleware.receive.use(apiai.receive);
 
+// apiai.hears for intents. in this example is 'hello' the intent
 controller.hears(['hello'],'direct_message',apiai.hears,function(bot, message) {
+    // ...
+});
+
+// apiai.action for actions. in this example is 'user.setName' the action
+controller.hears(['user.setName'],'direct_message',apiai.action,function(bot, message) {
     // ...
 });
 ```
