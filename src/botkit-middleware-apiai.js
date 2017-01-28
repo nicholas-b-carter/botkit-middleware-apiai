@@ -12,8 +12,8 @@ module.exports = function(config) {
     if (!config.minimum_confidence) {
         config.minimum_confidence = 0.5;
     }
-    if (!config.skip_bot) {
-        config.skip_bot = false;
+    if(!config.skip_bot) {
+      config.skip_bot = false;
     }
 
     if (!config.sessionId) {
