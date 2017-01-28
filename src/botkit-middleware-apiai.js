@@ -21,15 +21,14 @@ module.exports = function(config) {
     }
 
     var middleware = {};
-    var sessionId = config.sessionId;
-
+   
     middleware.receive = function(bot, message, next) {
         if (config.skip_bot === true && message.bot_id !== undefined) {
             next()
         }
         else if (message.text) {
             request = apiai.textRequest(message.text, {
-                sessionId: sessionId
+                sessionId: config.sessionId
             });
 
             request.on('response', function(response) {
