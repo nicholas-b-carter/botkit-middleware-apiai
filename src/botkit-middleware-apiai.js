@@ -16,14 +16,17 @@ module.exports = function(config) {
         config.skip_bot = false;
     }
 
+    if (!config.sessionId) {
+        config.sessionId = uuid.v1();
+    }
+
     var middleware = {};
-    var sessionId = uuid.v1();
+    var sessionId = config.sessionId;
 
     middleware.receive = function(bot, message, next) {
-        if(config.skip_bot === true && message.bot_id !== undefined){
-          next()
-        }
-        else if (message.text) {
+        if (config.skip_bot === true && message.bot_id !== undefined) {
+            next()
+        } else if (message.text) {
             request = apiai.textRequest(message.text, {
                 sessionId: sessionId
             });
@@ -42,8 +45,7 @@ module.exports = function(config) {
             });
 
             request.end();
-        }
-        else {
+        } else {
             next();
         }
     };
