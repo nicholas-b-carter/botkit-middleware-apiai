@@ -27,7 +27,7 @@
   "homepage": "https://github.com/abeai/botkit-middleware-apiai#readme",
   "dependencies": {
     "apiai": "^2.0.5",
-    "botkit": "^0.4.9",
+    "botkit": "^4.0.0",
     "node-uuid": "^1.4.7",
     "request-promise": "^4.1.1"
   },
