@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "git add . && git commit -m 'deploying' && git push && git push heroku master",
     "local": "nodemon src/botkit-middleware-apiai.js",
-    "patch": "./ngrok http 5000"
+    "patch": "./ngrok http 5000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -29,9 +31,11 @@
     "apiai": "^2.0.5",
     "botkit": "^0.4.9",
     "node-uuid": "^1.4.7",
-    "request-promise": "^4.1.1"
+    "request-promise": "^4.1.1",
+    "snyk": "^1.317.0"
   },
   "devDependencies": {
     "jscs": "^3.0.3"
-  }
+  },
+  "snyk": true
 }
